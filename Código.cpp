@@ -121,7 +121,6 @@ void loop() {
 
     delay(pulso);
   }
-
   else {
     Serial.println("Cartão Recusado");
     Serial.println(" ");
