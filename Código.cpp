@@ -72,6 +72,8 @@ void setup() {
   analogWrite(sist_ligado, pwm_led); // Indicar que o sistema está ligado
 }
 
+
+// teste coemntario
 void loop() {
 
   if ( ! mfrc522.PICC_IsNewCardPresent()) {
