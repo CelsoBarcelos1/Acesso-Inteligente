@@ -1,9 +1,8 @@
-// * Versão oficial que funciona perfeitamente !!!
-//data alteração: 25/11/2021
-
 //------------------------------------------//
 //       CÓDIGO TRANCA NERO 13/11/2020      //
 //   MÓDULO RC 522 / CARTAO RFID 13,5 KHz   //
+//                                          //
+//          By Celso Barcelos               //
 //------------------------------------------//
 
 //  CARTAOES QUE EU TENHO NO CADASTRO:
@@ -15,21 +14,17 @@
 // "2B 2F 33 0D" => Kevin
 // "06 AB E3 1B" => João
 // "CB 94 45 0D" => Caldeira
-
-// "31 1C 16 20" => Leonardo
 // "1B DA 44 0D" => Daniel
 // "6B 79 15 0F" => Iure
 // "D6 44 36 1A" => Ridogério
 // "F6 FB 4D 1A" => Mateus
 // "D6 0E 7C 1A" => Sacola
-// "C6 EB 53 1A" =>  ngelo
 // "C6 FF 2D 1A" => Paulo ?
 // "7B 3C 3A 0D" => Ritti
 // "69 3E 4F 8C" => Jhenifer
 // "06 5F 7B 1B" => Leo
 
 /*
-
   /* Definição das portas utilizadas
    Sensor RFID
      RST => D9
@@ -44,8 +39,11 @@
 //RFID:
 //VERIFICAR SAIDAS ICSP (11 12 13)
 #include <MFRC522.h> //LEitor RFID
+#include <avr/wdt.h>  // chama a biblioteca Watchdog
+
 #define SS_PIN 10
 #define RST_PIN 9
+
 MFRC522 mfrc522(SS_PIN, RST_PIN);  // Create MFRC522 instance
 
 // Definição das variaveis
@@ -55,9 +53,10 @@ int ledvermelho = 4; //  PINO QUE CONTROLA O LED
 int sist_ligado = 5; //  sinaliza que o sistema está ligado (stand by)
 int tempoled = 1000; // TEMPO DE CONTROLE DO LED
 int pulso = 250; // TEMPO DE PULSO
-int pwm_led = 5;
+int pwm_led = 5; // Controla intensidade do brilho do led que indica que o sistema está operante
 
 void setup() {
+  wdt_enable(WDTO_8S); // habilita o watchdog para acionar após 8 seg
   Serial.begin(9600);
   SPI.begin();
   mfrc522.PCD_Init();    // Init MFRC522 card
@@ -72,10 +71,9 @@ void setup() {
   analogWrite(sist_ligado, pwm_led); // Indicar que o sistema está ligado
 }
 
-
-// teste coemntario
 void loop() {
-
+  wdt_reset(); // reseta arduino
+  
   if ( ! mfrc522.PICC_IsNewCardPresent()) {
     return;
   }
@@ -105,12 +103,12 @@ void loop() {
       || (conteudo.substring(1) == "06 AB E3 1B") || (conteudo.substring(1) == "CB 94 45 0D")
       || (conteudo.substring(1) == "31 1C 16 20") || (conteudo.substring(1) == "1B DA 44 0D")
       || (conteudo.substring(1) == "6B 79 15 0F") || (conteudo.substring(1) == "D6 44 36 1A")
-      || (conteudo.substring(1) == "F6 FB 4D 1A") || (conteudo.substring(1) == "D6 0E 7C 1A") 
+      || (conteudo.substring(1) == "F6 FB 4D 1A") || (conteudo.substring(1) == "D6 0E 7C 1A")
       || (conteudo.substring(1) == "C6 EB 53 1A") || (conteudo.substring(1) == "C6 FF 2D 1A")
       || (conteudo.substring(1) == "06 5F 7B 1B")
-      || (conteudo.substring(1) == "7B 3C 3A 0D") || (conteudo.substring(1) == "69 3E 4F 8C") ){
+      || (conteudo.substring(1) == "7B 3C 3A 0D") || (conteudo.substring(1) == "69 3E 4F 8C") ) {
 
- //Serial.print("LIBERADO !!! PODE PASSAR !!!");
+    //Serial.print("LIBERADO !!! PODE PASSAR !!!");
     //Serial.println();
     Serial.println("Cartão Aceito");
     Serial.println(" ");
@@ -123,6 +121,7 @@ void loop() {
 
     delay(pulso);
   }
+
   else {
     Serial.println("Cartão Recusado");
     Serial.println(" ");
