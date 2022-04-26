@@ -23,6 +23,8 @@
 // "7B 3C 3A 0D" => Ritti
 // "69 3E 4F 8C" => Jhenifer
 // "06 5F 7B 1B" => Leo
+// "D1 A5 8F C9" => Heitor
+// "1B 83 45 0D" => Heitor
 
 /*
   /* Definição das portas utilizadas
@@ -56,7 +58,7 @@ int pulso = 250; // TEMPO DE PULSO
 int pwm_led = 5; // Controla intensidade do brilho do led que indica que o sistema está operante
 
 void setup() {
-  wdt_enable(WDTO_8S); // habilita o watchdog para acionar após 8 seg
+  wdt_enable(WDTO_4S); // habilita o watchdog para acionar após 4 seg
   Serial.begin(9600);
   SPI.begin();
   mfrc522.PCD_Init();    // Init MFRC522 card
@@ -105,11 +107,13 @@ void loop() {
       || (conteudo.substring(1) == "6B 79 15 0F") || (conteudo.substring(1) == "D6 44 36 1A")
       || (conteudo.substring(1) == "F6 FB 4D 1A") || (conteudo.substring(1) == "D6 0E 7C 1A")
       || (conteudo.substring(1) == "C6 EB 53 1A") || (conteudo.substring(1) == "C6 FF 2D 1A")
+      || (conteudo.substring(1) == "D1 A5 8F C9") || (conteudo.substring(1) == "1B 83 45 0D")
       || (conteudo.substring(1) == "06 5F 7B 1B")
       || (conteudo.substring(1) == "7B 3C 3A 0D") || (conteudo.substring(1) == "69 3E 4F 8C") ) {
 
     //Serial.print("LIBERADO !!! PODE PASSAR !!!");
     //Serial.println();
+
     Serial.println("Cartão Aceito");
     Serial.println(" ");
     digitalWrite(ledverde, HIGH);
