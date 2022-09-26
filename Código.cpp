@@ -12,7 +12,7 @@
 // "D6 57 29 1A" => Werikson
 // "51 BC EB 20" => Guilherme
 // "2B 2F 33 0D" => Kevin
-// "06 AB E3 1B" => João
+// "06 AB E3 1B" => Gladson
 // "CB 94 45 0D" => Caldeira
 // "1B DA 44 0D" => Daniel
 // "6B 79 15 0F" => Iure
@@ -29,6 +29,9 @@
 // "E9 AF 28 8C" => João Vitor
 // "D6 31 1C 1A" => Paula Gibrim
 // "C6 EE 1F 1A" => Valentim
+// "8B D2 46 0D" => Luiza
+// "06 3C FC 1B" => Jéssica
+// "42 16 9B 1E" => Francisco
 
 /*
   /* Definição das portas utilizadas
@@ -103,7 +106,7 @@ void loop() {
   //Serial.println(conteudo.substring(1));
 
   //Executa as ações a partir deste ponto
-  if ((conteudo.substring(1) == "CB CE 31 01") || (conteudo.substring(1) == "06 72 BA 1B")
+  if (   (conteudo.substring(1) == "CB CE 31 01") || (conteudo.substring(1) == "06 72 BA 1B")
       || (conteudo.substring(1) == "C6 BA 3C 1A") || (conteudo.substring(1) == "D6 57 29 1A")
       || (conteudo.substring(1) == "51 BC EB 20") || (conteudo.substring(1) == "2B 2F 33 0D")
       || (conteudo.substring(1) == "06 AB E3 1B") || (conteudo.substring(1) == "CB 94 45 0D")
@@ -112,10 +115,11 @@ void loop() {
       || (conteudo.substring(1) == "F6 FB 4D 1A") || (conteudo.substring(1) == "D6 0E 7C 1A")
       || (conteudo.substring(1) == "C6 EB 53 1A") || (conteudo.substring(1) == "C6 FF 2D 1A")
       || (conteudo.substring(1) == "D1 A5 8F C9") || (conteudo.substring(1) == "1B 83 45 0D")
-      || (conteudo.substring(1) == "06 5F 7B 1B")
-      || (conteudo.substring(1) == "7B 3C 3A 0D") || (conteudo.substring(1) == "69 3E 4F 8C")      
-      || (conteudo.substring(1) == "41 33 3D 20") || (conteudo.substring(1) == "E9 AF 28 8C" )
-      || (conteudo.substring(1) == "D6 31 1C 1A" ) || (conteudo.substring(1) == "C6 EE 1F 1A")){
+      || (conteudo.substring(1) == "06 5F 7B 1B") || (conteudo.substring(1) == "7B 3C 3A 0D") 
+      || (conteudo.substring(1) == "69 3E 4F 8C") || (conteudo.substring(1) == "41 33 3D 20")
+      || (conteudo.substring(1) == "E9 AF 28 8C") || (conteudo.substring(1) == "D6 31 1C 1A")
+      || (conteudo.substring(1) == "C6 EE 1F 1A") || (conteudo.substring(1) == "8B D2 46 0D")
+      || (conteudo.substring(1) == "06 3C FC 1B") || (conteudo.substring(1) == "42 16 9B 1E")){
 
     //Serial.print("LIBERADO !!! PODE PASSAR !!!");
     //Serial.println();
