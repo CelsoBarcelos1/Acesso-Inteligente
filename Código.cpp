@@ -6,7 +6,8 @@
 //------------------------------------------//
 
 //  CARTAOES QUE EU TENHO NO CADASTRO:
-// "CB CE 31 01" => Celso
+// "CB CE 31 01" => Celso antigo
+// "79 30 58 8D" => Celso novo
 // "06 72 BA 1B" => Brandão
 // "C6 BA 3C 1A" => Hiago
 // "D6 57 29 1A" => Werikson
@@ -32,6 +33,8 @@
 // "8B D2 46 0D" => Luiza
 // "06 3C FC 1B" => Jéssica
 // "42 16 9B 1E" => Francisco
+// "31 1C 16 20" => Pablo
+// "41 97 72 20" => Rafael
 
 /*
   /* Definição das portas utilizadas
@@ -47,7 +50,7 @@
 
 //RFID:
 //VERIFICAR SAIDAS ICSP (11 12 13)
-#include <MFRC522.h> //LEitor RFID
+#include <MFRC522.h> //LEetor RFID
 #include <avr/wdt.h>  // chama a biblioteca Watchdog
 
 #define SS_PIN 10
@@ -119,7 +122,9 @@ void loop() {
       || (conteudo.substring(1) == "69 3E 4F 8C") || (conteudo.substring(1) == "41 33 3D 20")
       || (conteudo.substring(1) == "E9 AF 28 8C") || (conteudo.substring(1) == "D6 31 1C 1A")
       || (conteudo.substring(1) == "C6 EE 1F 1A") || (conteudo.substring(1) == "8B D2 46 0D")
-      || (conteudo.substring(1) == "06 3C FC 1B") || (conteudo.substring(1) == "42 16 9B 1E")){
+      || (conteudo.substring(1) == "06 3C FC 1B") || (conteudo.substring(1) == "42 16 9B 1E")
+      || (conteudo.substring(1) == "31 1C 16 20") || (conteudo.substring(1) == "41 97 72 20")
+      || (conteudo.substring(1) == "79 30 58 8D")){
 
     //Serial.print("LIBERADO !!! PODE PASSAR !!!");
     //Serial.println();
